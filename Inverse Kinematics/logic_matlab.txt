@@ -1,0 +1,72 @@
+function t = invKine_1(x,y,z)
+offset_x = 80.718045; 
+offset_z = 53.9984;
+l1 = 147.875;
+l2 = 319.575;
+l3 = 73.499597;
+z=z-offset_z;
+l3 = l3 + x;
+l2p = sqrt(l2^2-y^2);
+p = sqrt(z^2 + (offset_x-l3)^2);
+phi = acos((l1^2+p^2-l2p^2)/(2*l1*p));
+alpha = atan(z/(offset_x-l3));
+t =rad2deg(phi+alpha);
+end
+
+
+function t = invKine_2(x,y,z)
+offset_x = 80.718045;
+offset_z = 53.9984;
+l1 = 147.875;
+l2 = 319.575;
+l3 = 73.499597;
+X = [x,y];
+H = [cos(2*pi/3),-sin(2*pi/3);sin(2*pi/3),cos(2*pi/3)];
+X = X*H; x = X(1);y=X(2);
+z=z-offset_z;
+l3 = l3 + x;
+l2p = sqrt(l2^2-y^2);
+p = sqrt(z^2 + (offset_x-l3)^2);
+phi = acos((l1^2+p^2-l2p^2)/(2*l1*p));
+alpha = atan(z/(offset_x-l3));
+t = rad2deg(phi+alpha);
+end
+
+
+function t = invKine_3(x,y,z)
+offset_x = 80.718045;
+offset_z = 53.9984;
+l1 = 147.875;
+l2 = 319.575;
+l3 = 73.499597;
+X = [x,y];
+H = [cos(4*pi/3),-sin(4*pi/3);sin(4*pi/3),cos(4*pi/3)];
+X = X*H; x = X(1);y=X(2);
+z=z-offset_z;
+l3 = l3 + x;
+l2p = sqrt(l2^2-y^2);
+p = sqrt(z^2 + (offset_x-l3)^2);
+phi = acos((l1^2+p^2-l2p^2)/(2*l1*p));
+alpha = atan(z/(offset_x-l3));
+t =rad2deg(phi+alpha);
+end
+
+
+function angles = driver_code(x,y,z)
+t1 = invKine_1(x,y,z);
+t2 = invKine_2(x,y,z);
+t3 = invKine_3(x,y,z);
+if t1>60
+    t1=t1-180;
+end
+if t2>60
+    t2=t2-180;
+end
+if t3>60
+    t3=t3-180;
+end
+angles = [t1,t2,t3];
+
+end
+
+
