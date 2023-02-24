@@ -1,3 +1,4 @@
+%Time Complexity - O(n³)
 t = -392:128:540;
 base_radius = 45;
 arm_length = 200;
