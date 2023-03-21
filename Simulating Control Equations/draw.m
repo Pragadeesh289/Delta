@@ -6,7 +6,7 @@
 % Change the values of x,y and z to plot 
 % 'a' is the maximum desired angular acceleration.
 a = 0.25;
-x = 20; y = 20; z = -327;
+x = 20; y = 0; z = -327;
 angles = invKineDelta(x,y,z); % user-defined function - Find logic below
 J = matrix(x,y,z); % user-defined function - Find logic below
 tf = sqrt(6*max(angles)/a);
